@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wedsite perkenalan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
+      background: #ffffff;
+    }
+
+    img {
+      max-width: 300px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      margin-top: 20px;
+    }
+
+    .options button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background-color: #02b6fd;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #00ff84;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="https://i.pinimg.com/originals/2f/91/93/2f919361a60b8f9d3e27b9b3910f7c57.jpg" alt="Love Image" />
+
+  <div class="question" id="question">Boleh kenalan?</div>
+
+  <div class="options" id="options">
+    <button onclick="nextStep('yes')">Ya</button>
+    <button onclick="nextStep('no')">Tidak</button>
+  </div>
+
+  <script>
+    let step = 1;
+
+    function nextStep(answer) {
+      const questionEl = document.getElementById("question");
+      const optionsEl = document.getElementById("options");
+
+      if (answer === "yes") {
+        // Redirect ke WhatsApp
+        window.location.href = "https://wa.me/6282259229035";
+        return;
+      }
+
+      if (step === 1 && answer === "no") {
+        questionEl.innerText = "Yakin gak mau kenalan?";
+        optionsEl.innerHTML = `
+          <button onclick="nextStep('yes')">Mau</button>
+          <button onclick="nextStep('no')">Nggak mau</button>
+        `;
+      }
+
+      if (step === 2 && answer === "no") {
+        questionEl.innerText = "Masa sih tidak mau? Saya orang baik loh~";
+        optionsEl.innerHTML = `
+          <button onclick="nextStep('yes')">Iya deh</button>
+          <button onclick="nextStep('sorry')">Maaf belum tertarik</button>
+        `;
+      }
+
+      if (step === 3 && answer === "sorry") {
+        questionEl.innerText = "Ayo dong, mau ya kenalan 😔";
+        optionsEl.innerHTML = `
+          <button onclick="nextStep('yes')">Oke deh 😳</button>
+          <button onclick="nextStep('final')">Wait aku mikir dulu...</button>
+        `;
+      }
+
+      if (step === 4 && answer === "final") {
+        questionEl.innerText = "Kalau gitu aku tunggu yaa, tapi jangan lama-lama 💗";
+        optionsEl.innerHTML = `
+          <button onclick="nextStep('yes')">Yaudah deh, aku mau! 😍</button>
+          <button onclick="nextStep('bye')">Maaf ya, tidak dulu🥲</button>
+        `;
+      }
+
+      if (step === 5 && answer === "bye") {
+        questionEl.innerText = "Yahh... 😢 Tapi makasih udah mampir yaa 💌";
+        optionsEl.innerHTML = ``;
+      }
+
+      step++;
+    }
+  </script>
+
+</body>
+</html>
+   
